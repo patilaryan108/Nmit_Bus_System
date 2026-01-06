@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { USER_ROLES } from '../../utils/constants';
+import { Link } from 'react-router-dom';
 import LoadingSpinner from '../common/LoadingSpinner';
 import './LoginForm.css';
 
@@ -102,9 +103,12 @@ const LoginForm = () => {
                     </button>
                 </form>
 
-                <div className="login-demo-info">
+                <div className="login-footer">
                     <p className="text-sm text-muted text-center">
-                        Demo Mode: Select any role and click Sign In
+                        Don't have an account? <Link to="/signup" className="link">Sign Up</Link>
+                    </p>
+                    <p className="text-sm text-muted text-center" style={{ marginTop: '0.5rem' }}>
+                        Demo accounts available for testing
                     </p>
                 </div>
             </div>

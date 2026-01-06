@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from '../utils/constants';
 
 // Create axios instance
 const api = axios.create({
-    baseURL: 'http://localhost:5000', // Replace with your backend URL
+    baseURL: 'http://localhost:5000/api', // Replace with your backend URL
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'
@@ -90,24 +90,59 @@ const MOCK_DATA = {
 // API Methods
 export const authAPI = {
     login: async (credentials) => {
-        // Mock login - replace with actual API call
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const user = MOCK_DATA.users[credentials.role];
-                if (user) {
-                    const token = 'mock-jwt-token-' + Date.now();
-                    resolve({ user, token });
-                } else {
-                    throw new Error('Invalid credentials');
-                }
-            }, 500);
-        });
+        try {
+            const response = await api.post('/auth/login', credentials);
+            // Response interceptor already returns response.data
+            // Backend returns { success, message, data: { user, token } }
+            if (response.success && response.data) {
+                return response.data; // Returns { user, token }
+            }
+            throw new Error(response.message || 'Login failed');
+        } catch (error) {
+            throw new Error(error.response?.data?.message || error.message || 'Login failed');
+        }
+    },
+
+    register: async (userData) => {
+        try {
+            const response = await api.post('/auth/register', userData);
+            // Response interceptor already returns response.data
+            // Backend returns { success, message, data: { user, token } }
+            if (response.success && response.data) {
+                return response.data; // Returns { user, token }
+            }
+            throw new Error(response.message || 'Registration failed');
+        } catch (error) {
+            throw new Error(error.response?.data?.message || error.message || 'Registration failed');
+        }
     },
 
     logout: async () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        return Promise.resolve();
+        try {
+            await api.post('/auth/logout');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    },
+
+    verifyToken: async () => {
+        try {
+            const response = await api.get('/auth/verify');
+            return response.data;
+        } catch (error) {
+            throw new Error('Token verification failed');
+        }
+    },
+
+    getProfile: async () => {
+        try {
+            const response = await api.get('/auth/profile');
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to fetch profile');
+        }
     }
 };
 
