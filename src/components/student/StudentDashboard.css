@@ -129,6 +129,60 @@
     margin-bottom: var(--spacing-md);
 }
 
+.feature-placeholder {
+    text-align: center;
+    padding: 2rem;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.feature-placeholder h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.feature-placeholder p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.feature-placeholder ul {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-placeholder ul li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.feature-placeholder ul li:before {
+    content: "✓ ";
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.feature-card {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card h4 {
+    margin: 0.5rem 0;
+}
+
+.feature-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
 @media (max-width: 1024px) {
     .map-card {
         grid-column: span 1;

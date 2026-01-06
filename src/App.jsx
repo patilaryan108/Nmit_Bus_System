@@ -6,6 +6,7 @@ import { USER_ROLES } from './utils/constants';
 // Components
 import Navbar from './components/common/Navbar';
 import LoginForm from './components/auth/LoginForm';
+import SignupForm from './components/auth/SignupForm';
 import StudentDashboard from './components/student/StudentDashboard';
 import DriverDashboard from './components/driver/DriverDashboard';
 import AdminDashboard from './components/admin/AdminDashboard';
@@ -51,10 +52,14 @@ const AppContent = () => {
 
             <main style={{ flex: 1 }}>
                 <Routes>
-                    {/* Public Route */}
+                    {/* Public Routes */}
                     <Route
                         path="/"
                         element={user ? <Navigate to={`/${user.role}`} replace /> : <LoginForm />}
+                    />
+                    <Route
+                        path="/signup"
+                        element={user ? <Navigate to={`/${user.role}`} replace /> : <SignupForm />}
                     />
 
                     {/* Student Routes */}
