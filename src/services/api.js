@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { API_ENDPOINTS } from '../utils/constants';
-
 // Create axios instance
 const api = axios.create({
     baseURL: 'http://localhost:5000/api', // Replace with your backend URL
@@ -40,7 +38,7 @@ api.interceptors.response.use(
 // Mock data for development
 const MOCK_DATA = {
     users: {
-        student: { id: 1, role: 'student', name: 'John Doe', busId: 'BUS001' },
+        student: { id: 1, role: 'student', name: 'Student User', busId: 'BUS001' },
         driver: { id: 2, role: 'driver', name: 'Mike Driver', busId: 'BUS001' },
         admin: { id: 3, role: 'admin', name: 'Admin User' }
     },
@@ -226,3 +224,6 @@ export const driverAPI = {
 };
 
 export default api;
+
+// Enable demo mode for local development (simulated live updates)
+export const DEMO_MODE = true;
