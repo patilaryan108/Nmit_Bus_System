@@ -39,17 +39,11 @@ const StudentDashboard = () => {
     }, []);
 
     if (loadError) {
-        return (
-            <div className="dashboard-container">
-                <div className="error-card glass-card">
-                    <h3>Error Loading Maps</h3>
-                    <p>Failed to load Google Maps. Please check your API key.</p>
-                </div>
-            </div>
-        );
+        // If maps fail to load, still render the dashboard UI with a message
+        console.error('Google Maps load error:', loadError);
     }
 
-    if (!isLoaded || loading) {
+    if (loading) {
         return (
             <div className="dashboard-container">
                 <LoadingSpinner text="Loading dashboard..." />
@@ -105,12 +99,18 @@ const StudentDashboard = () => {
                 {/* Map Card */}
                 <div className="map-card glass-card">
                     <h3 className="card-title">Live Tracking</h3>
-                    {busData && route && (
-                        <BusTracker
-                            busLocation={busData.location}
-                            route={route}
-                            busId={busData.id}
-                        />
+                    {!isLoaded ? (
+                        <div className="maps-unavailable">
+                            <p className="text-muted">Google Maps unavailable. Map features are disabled.</p>
+                        </div>
+                    ) : (
+                        busData && route && (
+                            <BusTracker
+                                busLocation={busData.location}
+                                route={route}
+                                busId={busData.id}
+                            />
+                        )
                     )}
                 </div>
 

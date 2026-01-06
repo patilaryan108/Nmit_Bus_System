@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { API_ENDPOINTS } from '../utils/constants';
-
 // Create axios instance
 const api = axios.create({
     baseURL: 'http://localhost:5000', // Replace with your backend URL
@@ -40,7 +38,7 @@ api.interceptors.response.use(
 // Mock data for development
 const MOCK_DATA = {
     users: {
-        student: { id: 1, role: 'student', name: 'John Doe', busId: 'BUS001' },
+        student: { id: 1, role: 'student', name: 'Student User', busId: 'BUS001' },
         driver: { id: 2, role: 'driver', name: 'Mike Driver', busId: 'BUS001' },
         admin: { id: 3, role: 'admin', name: 'Admin User' }
     },
@@ -91,14 +89,19 @@ const MOCK_DATA = {
 export const authAPI = {
     login: async (credentials) => {
         // Mock login - replace with actual API call
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const user = MOCK_DATA.users[credentials.role];
-                if (user) {
+                const userTemplate = MOCK_DATA.users[credentials.role];
+                if (userTemplate) {
+                    const user = { ...userTemplate };
+                    // If a username is supplied in the login form, use it as the returned user's name
+                    if (credentials.username) {
+                        user.name = credentials.username;
+                    }
                     const token = 'mock-jwt-token-' + Date.now();
                     resolve({ user, token });
                 } else {
-                    throw new Error('Invalid credentials');
+                    reject(new Error('Invalid credentials'));
                 }
             }, 500);
         });
@@ -191,3 +194,6 @@ export const driverAPI = {
 };
 
 export default api;
+
+// Enable demo mode for local development (simulated live updates)
+export const DEMO_MODE = true;
