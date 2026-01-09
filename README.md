@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # College Bus Tracking System
 
 A comprehensive real-time bus tracking system built with React and Google Maps integration, featuring three user roles: Students, Drivers, and Admins.
@@ -216,7 +215,3 @@ For issues or questions, please check the documentation or create an issue in th
 ---
 
 **Built with ❤️ using React and Google Maps**
-=======
-# Nmit_Bus_System
-Many colleges depend on buses for daily transportation, but lack a reliable system for real-time tracking, arrival updates, or delay notifications. This leads to unnecessary waiting, uncertainty for students and staff, and limited visibility and control for transport administrators.
->>>>>>> ca2bedf407b7042f7aef8ea4b82567e5ff7d9ffe

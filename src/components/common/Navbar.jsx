@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { USER_ROLES } from '../../utils/constants';
+import ThemeToggle from './ThemeToggle';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -24,6 +25,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-actions">
+                    <ThemeToggle />
                     {user && (
                         <>
                             <div className="user-info">

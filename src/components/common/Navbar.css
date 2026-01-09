@@ -2,9 +2,8 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--color-bg-glass);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--color-primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--shadow-md);
 }
 
@@ -25,16 +24,12 @@
 
 .brand-icon {
     font-size: 2rem;
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .brand-title {
     font-size: 1.5rem;
     font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: white;
 }
 
 .navbar-actions {
